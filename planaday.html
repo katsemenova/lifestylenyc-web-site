@@ -1,0 +1,195 @@
+<!DOCTYPE HTML>
+<!-- Kat Semenova -->
+<html>
+	<head>
+		<title>Lifestyle</title>
+		<style></style>
+		<link rel="stylesheet" href="css2.css">
+		<script >
+			function initialize()
+			{
+				totalCost=document.getElementById("totalcost");
+				peopleHotelOne=document.getElementById("peoplehotel1");
+				peopleHotelTwo=document.getElementById("peoplehotel2");
+				nightsHotelOne=document.getElementById("nightshotel1");
+				nightsHotelTwo=document.getElementById("nightshotel2");
+				hotelOneTotal=document.getElementById("hotelonetotal");
+				hotelTwoTotal=document.getElementById("hoteltwototal");
+				text=document.getElementById("contenttext");
+				title=document.getElementById("contenttitle");
+				totalHotOne=0;
+				totalHotTwo=0;
+				total=0;
+				peopleTwo=0;
+				peopleOne=0;
+				nightsOne=1;
+				nightsTwo=1;
+			}
+			function reset()
+			{
+				total=0;
+				peopleTwo=0;
+				peopleOne=0;
+				nightsOne=1;
+				nightsTwo=1;
+				totalHotOne=0;
+				totalHotTwo=0;
+				update();
+			}
+			function changePeople(button)
+			{
+				if(button==1)
+					{
+						peopleOne--;
+					}
+				if(button==2)
+					{
+						peopleOne++;
+						peopleTwo=0;
+						nightsTwo=1;
+					}
+				if(button==3)
+					{
+						peopleTwo--;
+					}
+				if(button==4)
+					{
+						peopleTwo++;
+						peopleOne=0;
+						nightsOne=0;
+					}
+				if(peopleOne<=0)
+					{
+						peopleOne=0;
+					}
+				if(peopleTwo<=0)
+					{
+						peopleTwo=0;
+					}
+				totalPrice();
+			}
+
+			function changeNights(button)
+			{
+				if(button==1)
+					nightsOne--;
+				if(button==2)
+					nightsOne++;
+				if(button==3)
+					nightsTwo--;
+				if(button==4)
+					nightsTwo++;
+				if(nightsOne<=0)
+					nightsOne=0;
+				if(nightsTwo<=0)
+					nightsTwo=0;
+				totalPrice();
+			}
+			function totalPrice()
+			{
+				totalHotOne=nightsOne*peopleOne*525;
+				totalHotTwo=nightsTwo*peopleTwo*210;
+				total=totalHotOne+totalHotTwo;
+				update();
+			}
+			function update()
+			{
+				totalCost.innerHTML=total;
+				peopleHotelOne.innerHTML=peopleOne;
+				peopleHotelTwo.innerHTML=peopleTwo;
+				nightsHotelOne.innerHTML=nightsOne;
+				nightsHotelTwo.innerHTML=nightsTwo;
+				hotelOneTotal.innerHTML=totalHotOne;
+				hotelTwoTotal.innerHTML=totalHotTwo;
+			}
+			function updateData(number)
+			{
+				data();
+				title.innerHTML = articles[number].title;
+				text.innerHTML = articles[number].text;
+			}
+			function data()
+			{
+				articles=[
+				{
+					"title":"About Us", "text": "Coming Soon",
+				},				
+				{
+					"title":"About Us", "text": "Coming Soon",
+				},
+				{
+					"title":"About Us", "text": "Coming Soon",
+				}
+				];
+			}
+
+
+
+		</script>
+	</head>
+	<body onload="initialize();">
+		<div id="main">
+			<div class="mainbox">
+
+				<div class="introduction bigbox widthtwo">
+					<span class="title">Lifestyle</span>
+						<div class="introText">We aim to bring the best of New York lifestyle to both locals and visitors. Enjoy everything from the latest city tales to New Yorkers' opinions, must-haves to nights on the town, things we love and tips all straight from the heart and soul of NYC. </br></br></br><hr><a class="navigation"href="index.html">Home</a><hr> <a class="navigation"href="planaday.html">Plan a day in NYC<a><hr><!-- This area is the image links. Formatted weirdly because if I place opent thing per line it moves the image on the page too --><span><a href="https://www.youtube.com/user/NetLifestyle"target="_blank"><img class="icon" src="images/youtube30.png"/></a> <a href="https://twitter.com/everythingnyc" target="_blank"><img class="icon" src="images/t.png"/></a> <a class="linktopopup" href="#popup1" onclick="updateData(0);"><img class="icon" src="images/qs.png"/></span></a>
+						</div>
+				</div>
+
+				<div class="bigbox widthfour about">
+					<span class="title">About this page</span>
+					</br>This is an estimator for the cost of visiting NYC. Keep in mind these values are not exact. Hope this helps you plan for your trip.
+					<button onclick="reset();">RESET</button>
+					</br>Total Cost: $<span id="totalcost">0</span>
+				</div>
+			</div>
+			<div class="mainbox">
+
+				<div class="bigbox widththree">
+					<div class="title">Hotels</div></br>
+					<div class="choice">
+						<img class="hotel" src="images/plaza.gif"/>
+						</br><span class="name">The Plaza Hotel</span>
+						</br><span class="about">About</span>
+						</br><span class="price">$525 per person/per night</span>
+						</br></br>People: 
+						</br><button class="up/down" onclick="changePeople(1);">-</button><span id="peoplehotel1">0</span><button class="up/down" onclick="changePeople(2);">+</button>
+						</br>Nights:
+						</br><button class="up/down"onclick="changeNights(1);">-</button><span id="nightshotel1" >1</span><button class="up/down"onclick="changeNights(2);">+</button>
+						</br>Total: $<span id="hotelonetotal">0</span>
+
+					</div>
+
+					<div class="choice">
+						<img class="hotel" src="images/hotelTwo.jpg"/>
+					</br><span class="name">414 Hotel NYC</span>
+						</br><span class="about"><a class="linktopopup" href="#popup1" onclick="updateData(1);">About</a></span>
+						</br><span class="price">$210 per person/per night</span>
+						</br></br>People: 
+						</br><button class="up/down" onclick="changePeople(3);">-</button><span id="peoplehotel2">0</span><button class="up/down" onclick="changePeople(4);">+</button>
+						</br>Nights:
+						</br><button class="up/down"onclick="changeNights(3);">-</button><span id="nightshotel2">1</span><button class="up/down"onclick="changeNights(4);">+</button>
+						</br>Total: $<span id="hoteltwototal">0</span>
+					</div>
+				</div>
+			</div>
+			<div class="mainbox">
+				<div class="bigbox widththree">
+					<div class="title">More Coming Soon</div></br>
+				</div>
+			</div>
+		</div>			
+
+		<div id="popup1" class="graylayer">
+		<div class="popup">
+			<a class="close" href="#">x</a>
+			<div class="content">
+				<div class="titletext" id="contenttitle"></div>
+				<div class="text" id="contenttext"></div>
+			</div>
+	</div>
+</div>
+	</body>
+</html>
+                                                                                                                                          
